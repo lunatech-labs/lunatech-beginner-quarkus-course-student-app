@@ -1,37 +1,26 @@
 package com.lunatech.training.quarkus;
 
-import io.quarkus.qute.Template;
-import io.quarkus.qute.TemplateInstance;
-
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Path("/products")
+@Produces(MediaType.APPLICATION_JSON)
 public class ProductsResource {
 
-    @Inject
-    Template catalogue;
-
-    @Inject
-    Template details;
-
     @GET
-    public TemplateInstance products() {
-        return catalogue.data("products", Product.listAll());
+    public List<Product> products() {
+        return Product.listAll();
     }
 
     @GET
     @Path("{productId}")
-    public TemplateInstance details(@PathParam("productId") Long productId) {
+    public Product details(@PathParam("productId") Long productId) {
         Product product = Product.findById(productId);
         if(product != null) {
-            return details.data("product", product);
+            return product;
         } else {
-            // Let RESTEasy handle it for us. Of course, alternatively we could also render a custom 404 page.
-            throw new NotFoundException("Product not found!");
+            throw new NotFoundException("Product not found");
         }
     }
 
