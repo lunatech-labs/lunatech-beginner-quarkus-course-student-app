@@ -1,15 +1,14 @@
-<html lang="en">
-  <head>
-    <title>Welcome to the HIQUEA catalog!</title>
-  </head>
-  <body>
-    <h1>HIQUEA Catalog</h1>
-    <p>Total products: {products.size}</p>
-    <h2>Products</h2>
-    <ul>
-        {#each products}
-        <li><a href="/products/{it.id}">{it.name}</a></li>
-        {/each}
-    </ul>
-  </body>
-</html>
+{#include layout}
+{#title}Welcome to the HIQUEA catalog!{/}
+
+{#body}
+<h1>HIQUEA Catalog</h1>
+<p>Total products: {products.size}</p>
+<h2>Products</h2>
+<ul>
+    {#each products}
+        {#productListItem it /}
+    {/each}
+</ul>
+{/body}
+{/include}
