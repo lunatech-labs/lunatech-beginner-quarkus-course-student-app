@@ -1,5 +1,9 @@
 package com.lunatech.training.quarkus;
 
+import io.quarkus.qute.Template;
+import io.quarkus.qute.TemplateInstance;
+
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -16,10 +20,13 @@ public class GreetingResource {
         return "Hello, Quarkians!";
     }
 
+    @Inject
+    Template greet;
+
     @GET
     @Path("hello/{subject}")
-    public String hello(@PathParam("subject") String subject) {
-        return "Hello, " + subject;
+    public TemplateInstance hello(@PathParam("subject") String subject) {
+        return greet.data("subject", subject);
     }
 
 }
