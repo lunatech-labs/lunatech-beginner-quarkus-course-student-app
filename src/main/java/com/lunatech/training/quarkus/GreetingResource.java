@@ -21,6 +21,7 @@ public class GreetingResource {
     private final String greeting;
     private final Template greet;
 
+    @Inject
     public GreetingResource(SubjectBean subjectBean, @ConfigProperty(name = "greeting") String greeting, Template greet) {
         this.subjectBean = subjectBean;
         this.greeting = greeting;
