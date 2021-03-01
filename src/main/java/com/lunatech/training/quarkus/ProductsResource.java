@@ -20,13 +20,13 @@ public class ProductsResource {
 
     @GET
     public TemplateInstance products() {
-        return catalogue.data("products", Products.all());
+        return catalogue.data("products", Product.listAll());
     }
 
     @GET
     @Path("{productId}")
     public TemplateInstance details(@PathParam("productId") Long productId) {
-        Product product = Products.getById(productId);
+        Product product = Product.findById(productId);
         if(product != null) {
             return details.data("product", product);
         } else {
