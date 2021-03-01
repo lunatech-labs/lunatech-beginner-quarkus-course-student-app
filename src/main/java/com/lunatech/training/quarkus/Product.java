@@ -1,13 +1,18 @@
 package com.lunatech.training.quarkus;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 
-public class Product {
+@Entity
+public class Product extends PanacheEntity {
 
-    public final Long id;
-    public final String name;
-    public final String description;
-    public final BigDecimal price;
+    public String name;
+    public String description;
+    public BigDecimal price;
+
+    public Product(){}
 
     public Product(Long id, String name, String description, BigDecimal price) {
         this.id = id;
