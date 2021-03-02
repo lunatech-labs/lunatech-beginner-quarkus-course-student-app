@@ -1,7 +1,7 @@
 package com.lunatech.training.quarkus;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import org.hibernate.validator.constraints.Length;
+import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.DecimalMin;
