@@ -1,45 +1,46 @@
 package com.lunatech.training.quarkus;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
+import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.Uni;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
 
 @Path("/products")
 @Produces(MediaType.APPLICATION_JSON)
 public class ProductsResource {
 
     @GET
-    public List<Product> products() {
-        return Product.listAll();
+    public Multi<Product> products() {
+        return Product.streamAll();
     }
 
     @GET
     @Path("{productId}")
-    public Product details(@PathParam("productId") Long productId) {
-        Product product = Product.findById(productId);
-        if(product != null) {
-            return product;
-        } else {
-            throw new NotFoundException("Product not found");
-        }
+    public Uni<Product> details(@PathParam("productId") Long productId) {
+        return Product.<Product>findById(productId).map(p -> {
+            if (p == null) {
+                throw new NotFoundException();
+            } else {
+                return p;
+            }
+        });
     }
 
     @PUT
     @Path("{productId}")
-    @Transactional
-    public Product update(@PathParam("productId") Long productId, @Valid Product product) {
-        Product existing = Product.findById(productId);
-        if(existing == null) {
-            throw new NotFoundException();
-        } else {
-            existing.name = product.name;
-            existing.description = product.description;
-            existing.price = product.price;
-            existing.persistAndFlush();
-            return existing;
-        }
+    public Uni<Product> update(@PathParam("productId") Long productId, @Valid Product product) {
+        return Product.<Product>findById(productId).flatMap(p -> {
+            if(p == null) {
+                return Uni.createFrom().failure(new NotFoundException());
+            } else {
+                p.name = product.name;
+                p.description = product.description;
+                p.price = product.price;
+                return p.persistAndFlush().map(__ -> p);
+            }
+        });
     }
 
 }
