@@ -1,7 +1,8 @@
 package com.lunatech.training.quarkus;
 
-import org.hibernate.validator.constraints.Length;
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
+import io.vertx.mutiny.sqlclient.Row;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.DecimalMin;
@@ -32,6 +33,14 @@ public class Product extends PanacheEntity {
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public static Product from(Row row) {
+        return new Product(
+                row.getLong("id"),
+                row.getString("name"),
+                row.getString("description"),
+                row.getBigDecimal("price"));
     }
 
 }
