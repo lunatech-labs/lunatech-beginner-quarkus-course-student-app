@@ -27,7 +27,7 @@ public class PriceUpdateStreams {
     @Outgoing("price-updates-out")
     public PriceUpdate process(PriceUpdate update) {
         if(update.price.compareTo(MINIMUM_PRICE) < 0) {
-            update.price = update.price.add(MINIMUM_PRICE);
+            throw new RuntimeException("Invalid price");
         }
         return update;
     }
