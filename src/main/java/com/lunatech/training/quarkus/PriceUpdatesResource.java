@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/prices")
 public class PriceUpdatesResource {
 
-    @Channel("price-updates")
+    @Channel("price-updates-in")
     Multi<PriceUpdate> priceUpdates;
 
     @GET
