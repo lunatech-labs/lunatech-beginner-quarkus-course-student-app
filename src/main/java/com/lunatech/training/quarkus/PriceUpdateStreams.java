@@ -14,7 +14,7 @@ public class PriceUpdateStreams {
 
     private final Random random = new Random();
 
-    @Outgoing("raw-price-updates")
+    @Outgoing("raw-price-updates-out")
     public Multi<PriceUpdate> generate() {
         return Multi.createFrom().ticks().every(Duration.ofSeconds(5))
                 .onOverflow().drop()
@@ -23,8 +23,8 @@ public class PriceUpdateStreams {
                                 new PriceUpdate(productId.longValue(), new BigDecimal(random.nextInt(100)))));
     }
 
-    @Incoming("raw-price-updates")
-    @Outgoing("price-updates")
+    @Incoming("raw-price-updates-in")
+    @Outgoing("price-updates-out")
     public PriceUpdate process(PriceUpdate update) {
         if(update.price.compareTo(MINIMUM_PRICE) < 0) {
             update.price = update.price.add(MINIMUM_PRICE);
