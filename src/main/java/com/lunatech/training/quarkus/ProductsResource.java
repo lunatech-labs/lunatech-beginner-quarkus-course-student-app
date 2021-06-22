@@ -23,31 +23,25 @@ public class ProductsResource {
         return Product.streamAll();
     }
 
-    @GET
-    @Path("{productId}")
-    public Uni<Product> details(@PathParam("productId") Long productId) {
-        return Product.<Product>findById(productId).map(p -> {
-            if (p == null) {
-                throw new NotFoundException();
-            } else {
-                return p;
-            }
-        });
+   @GET
+    @Path("/{id}")
+    public Uni<Product> product(@PathParam("id") Long identifier) {
+        return Product.<Product>findById(identifier)
+                .onItem().ifNull().failWith(NotFoundException::new);
     }
 
     @PUT
-    @Path("{productId}")
-    public Uni<Product> update(@PathParam("productId") Long productId, @Valid Product product) {
-        return Product.<Product>findById(productId).flatMap(p -> {
-            if(p == null) {
-                return Uni.createFrom().failure(new NotFoundException());
-            } else {
-                p.name = product.name;
-                p.description = product.description;
-                p.price = product.price;
-                return p.persistAndFlush().map(__ -> p);
-            }
-        });
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Uni<Product> update(@PathParam("id") Long identifier, @Valid Product product) {
+        return Panache
+                .withTransaction(() -> Product.<Product>findById(identifier)
+                        .onItem().ifNotNull().invoke(it -> {
+                            it.name = product.name;
+                            it.description = product.description;
+                            it.price = product.price;
+                        })
+                        .onItem().ifNull().failWith(NotFoundException::new));
     }
 
     @GET
