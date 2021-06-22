@@ -108,7 +108,7 @@ In this exercise we won’t be doing much for HIQUEA, but we’ll practice a lit
 
 * Run the app. What happens?
 * Add an `@Singleton` annotation to your SubjectBean class. What gets printed on the console, if you refresh http://localhost:8080/greet several times?
-* Change the annotation on `MyBean` from `@Singleton` to `@RequestScoped`. If you refresh several times now, what gets printed now? Why?
+* Change the annotation on your `SubjectBean` class from `@Singleton` to `@RequestScoped`. If you refresh several times now, what gets printed now? Why?
 * Now, let’s start actually using the bean. Change the `greet` method on `GreetingResource` to:
         
       @GET
