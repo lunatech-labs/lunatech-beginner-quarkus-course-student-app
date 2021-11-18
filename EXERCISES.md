@@ -128,7 +128,7 @@ In this exercise we won’t be doing much for HIQUEA, but we’ll practice a lit
 
 In this exercise, we will abandon our Qute templates, and convert our endpoints to returning JSON instead of HTML. Later, we will hook up a React frontend application to these endpoints.
 
-* Remove the `@Injected` templates from the `ProductsResource`
+* Remove the `@Inject` templates from the `ProductsResource`
 * Make the `products` and `details` method return a JSON representation of a list of products or a single product, respectively, instead. For this you will need to add an `@Produces` annotation with the right `MediaType` either on the class, or on each of the methods.
 
 The following three steps are only useful if you wrote the tests for these endpoints in Exercise #3: 
