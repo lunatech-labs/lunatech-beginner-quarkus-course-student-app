@@ -173,6 +173,8 @@ In this exercise, we will see how we can create close to no-code CRUD endpoints 
 
 * Check the `/panache-products` (or your own `/products`) endpoint to see if you find your newly created couch back.
 
+Tip: if the creation of a new Product does not work, add setters methods in the 'Product' class
+
 
 ## Exercise 9: Hook up the React app
 
