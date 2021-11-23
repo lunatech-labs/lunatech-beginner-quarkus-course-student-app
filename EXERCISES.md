@@ -247,6 +247,8 @@ In this exercise, we will migrate our Hiquea app to the Reactive programming mod
   - `quarkus-resteasy-jackson` with `quarkus-resteasy-reactive-jackson`.
   - `quarkus-resteasy-jsonb` with `quarkus-resteasy-reactive-jsonb`.
   - `quarkus-resteasy-qute` with `quarkus-resteasy-reactive-qute`.
+
+Note: Two extensions `quarkus-resteasy-reactive-jackson` and `quarkus-resteasy-reactive-jsonb` can do JSON serialisation but there is only `quarkus-resteasy-reactive-jackson` has some advanced features that RESTEasy Reactive supports. 
 * Replace `quarkus-jdbc-postgresql` with `quarkus-reactive-pg-client`.
 * Replace `quarkus-hibernate-orm-panache` with `quarkus-hibernate-reactive-panache`
   
