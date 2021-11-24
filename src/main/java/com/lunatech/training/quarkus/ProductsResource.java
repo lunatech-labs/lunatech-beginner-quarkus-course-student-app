@@ -7,9 +7,10 @@ import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.pgclient.PgPool;
 import io.vertx.mutiny.sqlclient.Tuple;
 
+import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
 
 @Path("/products")
 @Produces(MediaType.APPLICATION_JSON)
@@ -37,6 +38,7 @@ public class ProductsResource {
 
     @PUT
     @Path("{productId}")
+    @ReactiveTransactional
     public Uni<Product> update(@PathParam("productId") Long productId, @Valid Product product) {
         return Product.<Product>findById(productId).flatMap(p -> {
             if(p == null) {
