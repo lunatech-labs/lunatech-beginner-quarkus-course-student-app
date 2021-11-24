@@ -400,8 +400,30 @@ Tip: If something fails, you can use [Conductor](https://conduktor.io) to check 
       curl http://localhost:8080/prices
 
 * You should see price updates streaming by again.
-* Check what’s going on in Kafka with Conduktor if you haven’t yet.
+* Check what’s going on in Kafka with Conduktor if you haven’t yet. 
+* You can check it without Conduktor. There are two cases:
+  * You have already installed Kafka on your machine and in this case you can type the following commands each in a terminal 
+    * `$ kafka-console-consumer --bootstrap-server localhost:9092 --topic price-updates --from-beginning` 
+    * `$ kafka-console-consumer --bootstrap-server localhost:9092 --topic raw-price-updates --from-beginning` 
+    * `$ kafka-console-consumer --bootstrap-server localhost:9092 --topic price-updates` 
+      * `--from-beginning` allows to display from the beginning 
+      * They do almost the same thing, we listen to different topics:  `price-updates` and `raw-price-updates` and we receive something like this:
+      
+            {"productId":1,"price":77}
+            {"productId":2,"price":83}
+            {"productId":3,"price":71}
+            {"productId":4,"price":84}
+            {"productId":6,"price":36}
+            {"productId":7,"price":43}
 
+  * You haven't installed Conduktor, Kafka, or Zookeeper on your machine and you certainly don't want to install them: but you have docker since you are using `docker-composer`
+    * Launch the containers: `docker-compose up -d`
+    * You retrieve the name of the kafka container to connect to it (or ID): `docker-compose ps`
+    * You can now connect to the shell of this container and execute commands. This container contains all Kafka configurations: `docker exec -it quarkus-course-kafka sh`
+    * Now you are connected to the container and you can use the same command lines as above but with a bit difference, you have to mention the executable path : bin files are located here `/opt/kafka/bin/`
+    * Don’t forget .sh for extension file
+      * `/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic price-updates --from-beginning`
+  
 
 ## Exercise 16: Dead Letter Queue & Stream filtering
 
