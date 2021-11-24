@@ -125,7 +125,7 @@ In this exercise we won’t be doing much for HIQUEA, but we’ll practice a lit
 * Extra: Constructor injection is typically preferable over field injection. Change `GreetingResource` to use constructor injection instead.
 
 
-## Exercise 7: Convert endpoints to JSON
+## Exercise 7a: Convert endpoints to JSON
 
 In this exercise, we will abandon our Qute templates, and convert our endpoints to returning JSON instead of HTML. Later, we will hook up a React frontend application to these endpoints.
 
@@ -137,6 +137,9 @@ The following three steps are only useful if you wrote the tests for these endpo
 * Extra: Update the tests for the list and details endpoint and make them check for the right content-type.
 * Extra: Update the test for the details endpoint, and use the Json-path expression `name` to test that the value for the url `/products/1` equals "Chair".
 * Extra extra: Change the test to be independent from the database that's started manually, by making use of the Testcontainers project.
+
+
+## Exercise 7b: Add OpenAPI support and Swagger UI
 
 Now, we will be adding OpenAPI support and Swagger UI to our application, so we have better visibility into our REST endpoint. 
 
