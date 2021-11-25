@@ -416,7 +416,7 @@ Tip: If something fails, you can use [Conductor](https://conduktor.io) to check 
             {"productId":6,"price":36}
             {"productId":7,"price":43}
 
-  * You haven't installed Conduktor, Kafka, or Zookeeper on your machine and you certainly don't want to install them: but you have docker since you are using `docker-composer`
+  * You haven't installed Conduktor, Kafka, or Zookeeper on your machine and you certainly don't want to install them: but you have docker since you are using `docker-compose`
     * Launch the containers: `docker-compose up -d`
     * You retrieve the name of the kafka container to connect to it (or ID): `docker-compose ps`
     * You can now connect to the shell of this container and execute commands. This container contains all Kafka configurations: `docker exec -it quarkus-course-kafka sh`
