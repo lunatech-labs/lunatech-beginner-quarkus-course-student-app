@@ -1,5 +1,6 @@
 package com.lunatech.training.quarkus;
 
+import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -10,6 +11,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest
+@QuarkusTestResource(PostgresResource.class)
 public class ProductsResourceTest {
 
     @Test
