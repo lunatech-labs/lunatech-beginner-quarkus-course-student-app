@@ -21,7 +21,7 @@ public class PostgresResource implements QuarkusTestResourceLifecycleManager {
         db.start();
 
         final Map<String, String> conf = new HashMap<>();
-        conf.put("%test.quarkus.datasource.jdbc.url", db.getJdbcUrl());
+        conf.put("%test.quarkus.datasource.reactive.url", db.getJdbcUrl().replace("jdbc:", ""));
         conf.put("%test.quarkus.datasource.username", "developer");
         conf.put("%test.quarkus.datasource.password", "developer");
         conf.put("%test.quarkus.datasource.db-kind", "postgresql");
