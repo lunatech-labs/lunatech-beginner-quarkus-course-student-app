@@ -139,13 +139,14 @@ The following three steps are only useful if you wrote the tests for these endpo
 * Extra extra:
   * Change the test to be independent from the database that's started manually, by making use of the Testcontainers project.
   * Use Testcontainers with DevService, to active DevService 
-    * Comment all database config in `application.properties'
-  ```quarkus.datasource.db-kind=postgresql 
+    * Comment all database config in `application.properties`
+    
+  ```
+     quarkus.datasource.db-kind=postgresql 
      quarkus.datasource.username=postgres 
      quarkus.datasource.password=postgres 
      quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:8765/postgres
-  ```
-
+  ```  
     * Comment '@QuarkusTestResource(PostgresResource.class)' in 'ProductsResourceTest' class and start the test
   
     Note: Quarkus supports the automatic provisioning of unconfigured services in development and test mode (Dev Services). This means that if you include an extension and don’t configure it then Quarkus will automatically start the relevant service (usually using Testcontainers behind the scenes)
