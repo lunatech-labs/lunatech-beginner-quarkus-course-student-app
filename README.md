@@ -36,4 +36,24 @@ Or, if you prefer to keep what you made, you can continue working on a new branc
 
     git checkout exercise-5-solution -b my-new-branchname
 
+## Update the project
+
+Project solutions are managed with tags.
+To update the project correctly I strongly recommend you to make multiple commits rather than a big one.
+The reason is that there is a script in the project `retag.sh` that is creating all solutions tags according git log history.  
+So to be sure that the modification you have done are in the correct exercise and tags you should follow those steps:
+
+1. Make your changes in a dedicated branch that will be merged into main.
+2. Once the branch is merged go on main branch and start an interactive rebase with this command: `git rebase -i --root` 
+the `--root` allow you to rebase from the first commit of the project.
+3. Place your modification commits where they belong. So for example a modification on exercise instruction should be 
+placed after the first commit (it will be squash), and a modification on exercise solution should be placed 
+after the commit of the exercise solution (e.g. Solution of Exercise 7).
+4. When every commit are in place change the verb at the startof the line from `pick` to `fixup` it will squash 
+with the precedent commit and keep the old commit message (to allow retag.sh to do it's job).
+5. After this you can save and quit interactive rebase
+6. Now your git history is clean and should be as the same as before. You can now execute `retag.sh`.
+7. Now you can push your branch and tags by doing `git push --f` and `git push -f --tags `.
+
+Thanks for your contribution !
 
