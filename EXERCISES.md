@@ -136,8 +136,19 @@ The following three steps are only useful if you wrote the tests for these endpo
 
 * Extra: Update the tests for the list and details endpoint and make them check for the right content-type.
 * Extra: Update the test for the details endpoint, and use the Json-path expression `name` to test that the value for the url `/products/1` equals "Chair".
-* Extra extra: Change the test to be independent from the database that's started manually, by making use of the Testcontainers project.
+* Extra extra:
+  * Change the test to be independent from the database that's started manually, by making use of the Testcontainers project.
+  * Use Testcontainers with DevService, to active DevService 
+    * Comment all database config in `application.properties'
+  ```quarkus.datasource.db-kind=postgresql 
+     quarkus.datasource.username=postgres 
+     quarkus.datasource.password=postgres 
+     quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:8765/postgres
+  ```
 
+    * Comment '@QuarkusTestResource(PostgresResource.class)' in 'ProductsResourceTest' class and start the test
+  
+    Note: Quarkus supports the automatic provisioning of unconfigured services in development and test mode (Dev Services). This means that if you include an extension and don’t configure it then Quarkus will automatically start the relevant service (usually using Testcontainers behind the scenes)
 
 ## Exercise 7b: Add OpenAPI support and Swagger UI
 
