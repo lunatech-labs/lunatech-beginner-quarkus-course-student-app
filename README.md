@@ -53,7 +53,7 @@ after the commit of the exercise solution (e.g. Solution of Exercise 7).
 with the precedent commit and keep the old commit message (to allow retag.sh to do it's job).
 5. After this you can save and quit interactive rebase
 6. Now your git history is clean and should be as the same as before. You can now execute `retag.sh`.
-7. Now you can push your branch and tags by doing `git push --f` and `git push -f --tags `.
+7. Now you can push your branch and tags by doing `git push -f` and `git push -f --tags `.
 
 Thanks for your contribution !
 
