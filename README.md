@@ -49,18 +49,20 @@ the `--root` allow you to rebase from the first commit of the project.
 3. Place your modification commits where they belong. So for example a modification on exercise instruction should be 
 placed after the first commit (it will be squash), and a modification on exercise solution should be placed 
 after the commit of the exercise solution (e.g. Solution of Exercise 7).
-4. When every commit are in place change the verb at the startof the line from `pick` to `fixup` it will squash 
+4. When every commit are in place change the verb at the start of the line from `pick` to `fixup` it will squash 
 with the precedent commit and keep the old commit message (to allow retag.sh to do it's job).
 5. After this you can save and quit interactive rebase
 6. Now your git history is clean and should be as the same as before. You can now execute `retag.sh`.
 7. Now you can push your branch and tags by doing `git push -f` and `git push -f --tags `.
 
 If the project has been updated and you want to fetch the new exercises tags : 
+
 1. git fetch --force --tags
-2.git pull --force --tags
+2. git pull --force --tags
+
  or 
-1.remove the tags locally: git tag -l | xargs git tag -d
-2.fetch the tags : git fetch --tags
+1. remove the tags locally: git tag -l | xargs git tag -d
+2. fetch the tags : git fetch --tags
 
 Thanks for your contribution !
 
