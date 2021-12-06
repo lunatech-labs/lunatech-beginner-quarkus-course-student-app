@@ -55,5 +55,12 @@ with the precedent commit and keep the old commit message (to allow retag.sh to 
 6. Now your git history is clean and should be as the same as before. You can now execute `retag.sh`.
 7. Now you can push your branch and tags by doing `git push -f` and `git push -f --tags `.
 
+If the project has been updated and you want to fetch the new exercises tags : 
+1. git fetch --force --tags
+2.git pull --force --tags
+ or 
+1.remove the tags locally: git tag -l | xargs git tag -d
+2.fetch the tags : git fetch --tags
+
 Thanks for your contribution !
 
