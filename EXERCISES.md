@@ -137,7 +137,10 @@ The following three steps are only useful if you wrote the tests for these endpo
 * Extra: Update the tests for the list and details endpoint and make them check for the right content-type.
 * Extra: Update the test for the details endpoint, and use the Json-path expression `name` to test that the value for the url `/products/1` equals "Chair".
 * Extra extra: Change the test to be independent from the database that's started manually, by making use of the Testcontainers project.
-* Bonus solution: Quarkus supports the automatic provisioning of unconfigured services in development and test mode (Dev Services). This means that if you include an extension and don’t configure it then Quarkus will automatically start the relevant service (usually using Testcontainers behind the scenes). After finish exercise, do `git checkout exercise-7-solution` and test Testcontainers with DevService. To activate DevService:
+* Bonus solution: Quarkus supports the automatic provisioning of unconfigured services in development and test mode (Dev Services). 
+This means that if you include an extension and don’t configure it then Quarkus will automatically start the relevant service 
+(usually using Testcontainers behind the scenes). After finishing the exercise, do `git checkout exercise-7-solution` 
+and test Testcontainers with DevService. To activate DevService:
   * Comment all database config in `application.properties`
     
              quarkus.datasource.db-kind=postgresql
