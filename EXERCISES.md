@@ -467,50 +467,54 @@ In this exercise we will see how to install Graal VM
 Download Graal VM Community Edition for your OS from Oracle website.
 
 Unzip archive with the command above
-tar -xzf <file-name>.tar.gz
+`tar -xzf <file-name>.tar.gz`
 
 Move it into the JVM directory
 If you use macOS, run sudo command:
-sudo mv <graalvm-directory> /Library/Java/JavaVirtualMachines
+`sudo mv <graalvm-directory> /Library/Java/JavaVirtualMachines`
 
 Configure GRAALVM_HOME, JAVA_HOME and PATH
+```
 export GRAALVM_HOME=/Library/Java/JavaVirtualMachines/<graalvm-directory>/Contents/Home/
 export JAVA_HOME=${GRAALVM_HOME}
 export PATH=${GRAALVM_HOME}/bin:$PATH
+```
 
 Check Graal VM had been added
-java --version 
+`java --version`
 
 Install native image
-gu install native-image
+`gu install native-image`
 
 Go back to exercise 15
-git checkout exercise-15-solution
+`git checkout exercise-15-solution`
 
 Build native image
-./mvnw package -Pnative
+`./mvnw package -Pnative`
 
 Check the native image
-./mvnw verify -Pnative
+`./mvnw verify -Pnative`
 
 There is an error and there are 2 solutions
 Solution 1
 Open GreetingResourceTest.java, delete these lines
+```java
 @Inject
 @ConfigProperty(name = "greeting")
 String greeting;
+```
 
-Then replace .body(containsString(greeting)); by .body(containsString("Howdy"));
+Then replace `.body(containsString(greeting));` by `.body(containsString("Howdy"));`
 
 Solution 2
-Open GreetingResourceTest.java, just above @QuarkusTest, add: @DisabledOnNativeImage
+Open GreetingResourceTest.java, just above `@QuarkusTest`, add: `@DisabledOnNativeImage`
 
 Retry
-./mvnw verify -Pnative
+`./mvnw verify -Pnative`
 
-Note: @NativeImageTest will soon be deprecated s use @QuarkusIntegrationTest instead
+Note: `@NativeImageTest` will soon be deprecated so use `@QuarkusIntegrationTest` instead
 
 The checking process is in production mode by default.
 To switch in test mode, 2 solutions:
-- This command: ./mvnw verify -Pnative -Dquarkus.test.native-image-profile=test
-- In application.properties file, add: quarkus.test.native-image-profile=test
+- This command: `./mvnw verify -Pnative -Dquarkus.test.native-image-profile=test`
+- In application.properties file, add: `quarkus.test.native-image-profile=test`
