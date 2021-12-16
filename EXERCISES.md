@@ -489,6 +489,9 @@ Install native image
 Go back to exercise 15
 `git checkout exercise-15-solution`
 
+In application.properties file, add this line:
+`%prod.quarkus.hibernate-orm.sql-load-script = import.sql`
+
 Build native image
 `./mvnw package -Pnative`
 
@@ -518,3 +521,43 @@ The checking process is in production mode by default.
 To switch in test mode, 2 solutions:
 - This command: `./mvnw verify -Pnative -Dquarkus.test.native-image-profile=test`
 - In application.properties file, add: `quarkus.test.native-image-profile=test`
+
+### Performances
+Step 1 : Start the application in non native mode:
+```
+./mvnw package
+java -jar target/quarkus-app/quarkus-run.jar
+```
+
+Check the boot time in console
+For example:
+`INFO  [io.quarkus] (Quarkus Main Thread) student-app 1.0.0-SNAPSHOT on JVM (powered by Quarkus 2.4.1.Final) started in 3.664s. Listening on: http://localhost:8080`
+
+Find the pid of the application whith `jps` and use `top` know the memory used
+```
+jps
+top -pid <pid>
+```
+
+It's approximately 536M
+
+Stop the application
+
+Step 2 : Start the application in native mode:
+```
+./mvnw package -Pnative
+./target/student-app-1.0.0-SNAPSHOT-runner
+```
+
+Check the boot time in console
+For example:
+`INFO  [io.quarkus] (main) student-app 1.0.0-SNAPSHOT native (powered by Quarkus 2.4.1.Final) started in 0.072s. Listening on: http://0.0.0.0:8080`
+
+Find the pid of the application whith `ps` and use `top` know the memory used
+```
+ps
+top -pid <pid>
+```
+
+It's approximately 52M
+
