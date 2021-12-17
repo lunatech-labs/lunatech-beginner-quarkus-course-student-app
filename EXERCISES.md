@@ -470,3 +470,18 @@ Finally, we want to connect our React frontend to the cool new price-streaming f
 Next, we need to update the last remaining feature flag (`reactivePrices`), and take one more look at our Hiquea app. The prices are now updated every five seconds!
 
 Congratulations, you have finished all exercises :)
+
+
+## Exercise 17: Use Graal VM
+
+First of all, go back to exercise 15
+`git checkout exercise-15-solution`
+
+In this exercise you have to :
+* Install Graal VM Community Edition
+* Create the native-image executable
+* Check the native-image executable
+* Compare the performances between classic runtime mode and native-image executable mode (boot time and memory used)
+
+Download Graal VM Community Edition for your OS from Oracle website and install it, create and check the native-image executable.
+Finally, compare the boot time and memory used between classic runtime mode and native-image executable mode.
