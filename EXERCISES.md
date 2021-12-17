@@ -470,3 +470,19 @@ Finally, we want to connect our React frontend to the cool new price-streaming f
 Next, we need to update the last remaining feature flag (`reactivePrices`), and take one more look at our Hiquea app. The prices are now updated every five seconds!
 
 Congratulations, you have finished all exercises :)
+
+
+## Exercise 18: Using Event Bus
+
+In this exercise we will see how to send a message with Event Bus.
+
+1. Add an endpoint `/eventbus-price` to `PriceUpdatesResource` that return a new price.
+
+* Implement the method such that if the price is less than 30, throws a runtime exception.
+* Execute the cURL command :
+  curl http://localhost:8080/prices/eventbus-price
+
+2. Copy the class `PriceUpdateList.java` from `/materials/exercise-18` into `src/main/java/com/lunatech/training/quarkus`
+* Add an endpoint `/eventbus-prices` to `PriceUpdatesResource` that return a list of prices where each price is more or equal 30
+* Execute the cURL command :
+  curl http://localhost:8080/prices/eventbus-prices
